@@ -55,18 +55,17 @@ newCity v w = City "Paris" (V.map mkStreet $ V.fromList [1..v])
 
 updateAccountsLens :: Int -> City -> City
 updateAccountsLens n = over (street.traverse.people.traverse.accounts.traverse) (apply up)
-    where up = Update (incAccount, matchAccount n)
+    where up = updateAccount n
 
 updateAccounts :: Int -> Update City
 updateAccounts n = overIf (street.traverse.people.traverse) (updatePerson n)
 
 updatePerson :: Int -> Update Person
-updatePerson n = overIf (accounts.traverse) up
-    where up = Update (incAccount, matchAccount n)
+updatePerson n = overIf (accounts.traverse) (updateAccount n)
 
 updateAccountsSpecialized :: Int -> Update City
 updateAccountsSpecialized n =
-    let up = Update (incAccount, matchAccount n)
+    let up = updateAccount n
         updatePersonSpec = overIf accounts $ overVector up
     in (overIf street . overVector . overIf people . overVector) updatePersonSpec
 
@@ -74,11 +73,6 @@ overAccounts :: Update Account -> Update City
 overAccounts = (overIf street . overVector . overIf people . overVector . overIf accounts . overVector)
 
 updateAccount :: Int -> Update Account
-updateAccount n = Update (incAccount, matchAccount n)
-
-matchAccount :: Int -> Account -> Bool
-matchAccount n Account{_pid=p} = p == n
-
-incAccount :: Account -> Account
-incAccount (Account n k p) = Account (n+1) k p
+updateAccount n = Update (over number (+1), (== n) . view pid)
+{-# INLINE updateAccount #-}
 

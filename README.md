@@ -39,6 +39,5 @@ Weigh benchmarks
     update naive lens  127,185,576  122
     update traverse     37,849,088   36
     update special       1,903,392    1
-    update fused        31,387,272   30
-
+    update fused        44,507,272   42
 
