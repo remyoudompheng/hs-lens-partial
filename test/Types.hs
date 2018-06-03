@@ -77,7 +77,7 @@ updateAccount :: Int -> Update Account
 updateAccount n = Update (incAccount, matchAccount n)
 
 matchAccount :: Int -> Account -> Bool
-matchAccount n Account{_pid=p} = let !b = (p == n) in b
+matchAccount n Account{_pid=p} = p == n
 
 incAccount :: Account -> Account
 incAccount (Account n k p) = Account (n+1) k p
