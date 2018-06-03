@@ -1,0 +1,76 @@
+-- This file has been generated from package.yaml by hpack version 0.28.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 40da71a32dad200ff2b538d016d64ed34a8ba09ace178d615ed064a51a5cc8e5
+
+name:           lens-partial
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/githubuser/simple-library#readme>
+homepage:       https://github.com/remyoudompheng/hs-lens-partial#readme
+bug-reports:    https://github.com/remyoudompheng/hs-lens-partial/issues
+author:         Rémy Oudompheng
+maintainer:     remy@archlinux.org
+copyright:      2018 Rémy Oudompheng
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+cabal-version:  >= 1.10
+extra-source-files:
+    ChangeLog.md
+    README.md
+
+source-repository head
+  type: git
+  location: https://github.com/remyoudompheng/hs-lens-partial
+
+library
+  exposed-modules:
+      Control.Lens.Traversal.Update
+  other-modules:
+      Paths_lens_partial
+  hs-source-dirs:
+      src
+  ghc-options: -Wall
+  build-depends:
+      base >=4.0 && <5
+    , lens >=2.0 && <5
+    , vector
+  default-language: Haskell2010
+
+test-suite simple-library-test
+  type: exitcode-stdio-1.0
+  main-is: MainTest.hs
+  other-modules:
+      Types
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-T
+  build-depends:
+      base >=4.0 && <5
+    , deepseq
+    , lens >=2.0 && <5
+    , lens-partial
+    , tasty
+    , tasty-hunit
+    , text
+    , vector
+  default-language: Haskell2010
+
+benchmark simple-library-benchmark
+  type: exitcode-stdio-1.0
+  main-is: MainBench.hs
+  other-modules:
+      Types
+  hs-source-dirs:
+      test
+  ghc-options: -O2 -ticky -rtsopts -with-rtsopts=-T
+  build-depends:
+      base >=4.0 && <5
+    , deepseq
+    , lens >=2.0 && <5
+    , lens-partial
+    , text
+    , vector
+    , weigh
+  default-language: Haskell2010

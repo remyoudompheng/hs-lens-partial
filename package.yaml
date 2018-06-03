@@ -1,6 +1,6 @@
 name:                lens-partial
 version:             0.1.0.0
-github:              "remyoudompheng/lens-partial"
+github:              "remyoudompheng/hs-lens-partial"
 license:             BSD3
 author:              "Rémy Oudompheng"
 maintainer:          "remy@archlinux.org"
