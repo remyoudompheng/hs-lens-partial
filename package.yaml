@@ -1,0 +1,67 @@
+name:                lens-partial
+version:             0.1.0.0
+github:              "remyoudompheng/lens-partial"
+license:             BSD3
+author:              "Rémy Oudompheng"
+maintainer:          "remy@archlinux.org"
+copyright:           "2018 Rémy Oudompheng"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/githubuser/simple-library#readme>
+
+dependencies:
+# Any version of base defining the Any monoid and the Applicative
+# instance of Const Any.
+- base >= 4.0 && < 5
+# Any version of Lens defining Traversals
+- lens >= 2.0 && < 5
+- vector
+
+library:
+  source-dirs: src
+
+  ghc-options: -Wall
+
+tests:
+  simple-library-test:
+    main:                MainTest.hs
+    other-modules:       Types
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-T
+    dependencies:
+    - deepseq
+    - tasty
+    - tasty-hunit
+    - text
+    - vector
+    - lens-partial
+
+benchmarks:
+  simple-library-benchmark:
+    main:               MainBench.hs
+    other-modules:      Types
+    source-dirs:        test
+    ghc-options:
+    - -O2
+    - -ticky
+    - -rtsopts
+    - -with-rtsopts=-T
+    dependencies:
+    - deepseq
+    - text
+    - vector
+    - weigh
+    - lens-partial
