@@ -5,6 +5,7 @@ module Control.Lens.Traversal.Update where
 import Control.Applicative
 import Control.Lens
 import Data.Monoid
+import Data.Semigroup
 import qualified Data.Vector as V
 
 -- | An 'Update' is a function acting conditionally
@@ -25,6 +26,9 @@ compose :: Update a -> Update a -> Update a
 compose (Update (f, c)) y@(Update (f', c')) = Update (f . apply y, cond)
    where cond x = c' x || c (f' x)
 {-# INLINABLE compose #-}
+
+instance Semigroup (Update a) where
+   (<>) = compose
 
 instance Monoid (Update a) where
    mempty = Update (id, const True)
